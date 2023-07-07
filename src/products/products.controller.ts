@@ -11,12 +11,14 @@ export class ProductsController {
 
   @Post()
   addProduct(
-    @Body('title') prodTitle: string, // Extract the 'title' property from the request body
-    @Body('description') prodDesc: string, // Extract the 'description' property from the request body
-    @Body('price') prodPrice: number, // Extract the 'price' property from the request body
+     // Extract the 'title, description, price' property from the request body
+    @Body('title') prodTitle: string,
+    @Body('description') prodDesc: string,
+    @Body('price') prodPrice: number,
   ) {
-    const generatedId = this.currentId; // Store the currentId value in generatedId
-    this.currentId++; // Increment the currentId by 1 for the next product
+    // Store the currentId value in generatedId
+    const generatedId = this.currentId; 
+    this.currentId++; 
     this.productsService.insertProduct(prodTitle, prodDesc, prodPrice); // Call the insertProduct method of the productsService to add the product
     return { id: generatedId }; // Return an object with the generatedId as the response
   }
